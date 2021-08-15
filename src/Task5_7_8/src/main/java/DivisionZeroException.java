@@ -5,4 +5,3 @@ public class DivisionZeroException extends Exception {
         super(message);
     }
 }
-

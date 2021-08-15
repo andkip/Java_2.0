@@ -4,45 +4,52 @@ public class Calculator {
     private double one;
     private double two;
     private String sign;
+    private double result;
+
+    public static double divide(double x, double y) throws DivisionZeroException {
+        if (y == 0) {
+            throw new DivisionZeroException("Деление на ноль запрещено");
+        } else return x / y;
+    }
+
+    public static double minus(double x, double y) {
+        return x - y;
+    }
+
+    public static double multiply(double x, double y) {
+        return x * y;
+    }
+
+    public static double plus(double x, double y) {
+        return x + y;
+    }
 
     public Calculator(double one, double two, String sign) {
         this.one = one;
         this.two = two;
         this.sign = sign;
     }
-
-    public double getOne() {
-        return one;
+    public double getResult() {
+        return result;
     }
 
-    public double getTwo() {
-        return two;
-    }
-
-    public String sign() {
-        return sign;
-    }
-
-    public void Calculator() throws DivisionZeroException {
+    public double Calculator() throws DivisionZeroException, IncorrectSignException {
         switch (sign) {
             case "+":
-                System.out.printf("Результат: %.4f\n", Operations.plus(one, two));
-                break;
+               result = plus(one, two);
+                return result;
             case "-":
-                System.out.printf("Результат: %.4f\n", Operations.minus(one, two));
-                break;
+                result = minus(one, two);
+                return result;
             case "*":
-                System.out.printf("Результат: %.4f\n", Operations.multiply(one, two));
-                break;
+                result = multiply(one, two);
+                return result;
             case "/":
-                if (two == 0)
-                 { throw new DivisionZeroException("Деление на ноль запрещено");}
-                else
-                    System.out.printf("Результат: %.4f\n", Operations.divide(one, two));
-                break;
-            default:
-                System.out.println("Некорректный знак операции");
-                break;
+                result = divide(one, two);
+                return result;
+            default: {
+                throw new IncorrectSignException("Неверный знак операции");
+            }
         }
     }
 }
