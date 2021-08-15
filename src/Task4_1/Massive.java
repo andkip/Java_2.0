@@ -17,38 +17,37 @@ public class Massive {
         for (int i = 0; i < array.length; i++) {
             array[i] = random.nextInt(21) - 10;
         }
-        int min = Arrays.stream(array).min().getAsInt();
-        int max = Arrays.stream(array).max().getAsInt();
         System.out.println("Массив:\n" + Arrays.toString(array));
-        System.out.println("Максимальный элемент: " + max);
-        System.out.println("Минимальный элемент: " + min);
-        System.out.println("Массив с перемещенными min и max элементами:\n" + Arrays.toString(change(array)));
-    }
-    public static int[] change(int[] array){
-        int max = array[0], min = array[0], maxIndex = 0, minIndex = 0;
-        for(int i = 1; i < array.length; i++){
-            if (array[i] > max){
-                max = array[i];
-                maxIndex = i;
+
+        int maxNegative = 0, minPositive = 0, maxNegativeIndex = 0, minPositiveIndex = 0;;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < 0) {
+                maxNegative = array[i];
             }
-            if (array[i]<min) {
-                min = array[i];
-                minIndex = i;
+            if (array[i] > 0) {
+                minPositive = array[i];
             }
         }
-        array[maxIndex] = min;
-        array[minIndex] = max;
-        return array;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < 0) {
+                maxNegative = Math.max(maxNegative, array[i]);
+            }
+            if (array[i] > 0) {
+                minPositive = Math.min(minPositive, array[i]);
+            }
+        }
+        System.out.println("Максимальный отрицательный элемент массива: " + maxNegative);
+        System.out.println("Минимальный положительный элемент массива: " + minPositive);
+
+        for (int i = 0; i < array.length; i++) {
+            if (maxNegative == array[i]) {
+                maxNegativeIndex = i;
+            } else if (minPositive == array[i]) {
+                minPositiveIndex = i;
+            }
+        }
+        array[maxNegativeIndex] = minPositive;
+        array[minPositiveIndex] = maxNegative;
+        System.out.println("Массив с перемещенными min и max элементами:\n" + Arrays.toString(array));
     }
 }
-
-
-    
-
-
-
-
-
-
-
-
