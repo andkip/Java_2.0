@@ -4,6 +4,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/**
+ * Задание №6: Есть входной файл с набором слов, написанных через пробел.
+ * Необходимо:
+ * Прочитать слова из файла.Отсортировать в алфавитном порядке.
+ * Посчитать сколько раз каждое слово встречается в файле.Вывести статистику на консоль.
+ * Найти слово с максимальным количеством повторений. Вывести на консоль это слово и сколько раз оно встречается в файле
+ *
+ * @author Andrey Kiprushin
+ */
+
 public class FileReader {
     public static void main(String[] args) throws FileNotFoundException {
         ArrayList<String> textWords = new ArrayList<>();
